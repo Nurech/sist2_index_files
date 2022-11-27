@@ -16,6 +16,6 @@ docker pull simon987/sist2
 docker-compose up -d
 echo.
 
-start chrome www.0.0.0.0:8080.com
+start chrome http:\\0.0.0.0:8080
 
 pause
