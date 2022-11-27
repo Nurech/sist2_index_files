@@ -12,7 +12,7 @@ additional conf of sist2: https://github.com/simon987/sist2/blob/master/docs/USA
 3. Run start.bat to make folders and launch Docker Composer
 4. Place files in folder \documents (created by start.bat), which you want to index
 5. Sist2 from Docker will index files in \documents and send to elasticsearch
-6. Sist2 will run web interface at [http:\\0.0.0.0:8080](http:\\0.0.0.0:8080) serving UI and your files
+6. Sist2 will run web interface at http:\\0.0.0.0:8080 serving UI and your files
 7. If someting failes (indexing or sending the index) just restart the indivdual container in Docker to repeat a step
 8. In UI go settings -> Highlight context size in characters - to increase lenght of text preview
 ```
