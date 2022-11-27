@@ -3,21 +3,21 @@ version: "2.1" # For Windows users
 
 services:
 
-  # Starts elasticsearch
+  # 1 Start elasticsearch
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.14.0
     environment:
       - discovery.type=single-node
       - "ES_JAVA_OPTS=-Xms1G -Xmx2G"
     ports:
-      - 9200:9200      
+      - 9200:9200
     healthcheck:
        test: curl -u elastic:elastic -s -f elasticsearch:9200/_cat/health >/dev/null || exit 1
        interval: 5s
        timeout: 60s
-       retries: 60     
+       retries: 60
 
-  # Scan the files and make a index
+  # 2 Scan the files and make a index
   sist2_scan:
     image: simon987/sist2
     container_name: sist2_scan
@@ -27,32 +27,39 @@ services:
       - .\my_index/:/my_index
     command: "scan --very-verbose --incremental ./my_index/idx -o ./my_index/idx /tmp/es"
 
-  # Push index to elasticsearch
+  # 3 Push index to elasticsearch
   sist2_index:
     image: simon987/sist2
     container_name: sist2_index
     restart: "no"
     depends_on:
+      sist2_scan:
+        condition: service_completed_successfully
       elasticsearch:
-        condition: service_healthy    
+        condition: service_healthy
     volumes:
       - .\documents/:/tmp/es
       - .\my_index/:/my_index
-    command: "index --very-verbose --force-reset --batch-size 1000 --es-url http://elasticsearch:9200 ./my_index/idx"        
+    command: "index --very-verbose --force-reset --batch-size 1000 --es-url http://elasticsearch:9200 ./my_index/idx"
     
-  # Start the web
+  # 4 Start the web UI
   sist2_web:
     image: simon987/sist2
     container_name: sist2_web
     restart: "no"
+    depends_on:
+      sist2_scan:
+        condition: service_completed_successfully
+      sist2_index:
+        condition: service_completed_successfully
+      elasticsearch:
+        condition: service_healthy
     ports:
-      - "8888:8888"    
+      - "8888:8888"
     volumes:
       - .\documents/:/tmp/es
       - .\my_index/:/my_index
-    command: "web --very-verbose --bind 0.0.0.0:8888 --es-url http://elasticsearch:9200 ./my_index/idx"    
-    
-
+    command: "web --very-verbose --bind 0.0.0.0:8888 --es-url http://elasticsearch:9200 ./my_index/idx"
 
 volumes:
   documents:
