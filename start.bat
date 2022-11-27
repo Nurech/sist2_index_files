@@ -7,15 +7,13 @@ echo.
 rmdir /s /q .\my_index
 mkdir documents
 
-echo.
 echo Made directory "documents". Move files there you want to be indexed.
-echo.
 
 docker pull docker.elastic.co/elasticsearch/elasticsearch:7.14.0 
 docker pull simon987/sist2
 docker-compose up -d
 echo.
 
-start chrome http:\\0.0.0.0:8080
+start chrome http://localhost:8888/
 
 pause
