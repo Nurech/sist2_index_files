@@ -18,7 +18,7 @@ additional conf of sist2: https://github.com/simon987/sist2/blob/master/docs/USA
 ```
 Know that docker pull for sist2 is ~292.78 MB and elsasticsearch ~1.24 GB.
 
-The ceated index for ~40 files is ~7 MB, so quire marginal.
+The ceated index for ~40 files is ~7 MB.
 
 ![cmd](https://user-images.githubusercontent.com/20840114/204127663-3a9e5bff-7631-4e9e-b295-a2a2ef1b9e84.PNG)
 ![docker](https://user-images.githubusercontent.com/20840114/204127667-ee578eb9-d0d8-4aea-92ab-25bfa2d09706.PNG)
