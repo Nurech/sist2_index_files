@@ -8,13 +8,15 @@ additional conf of sist2: https://github.com/simon987/sist2/blob/master/docs/USA
 
 ```
 1. Clone start.bat and docker-compose.yml to any folder e.g. ~\sist
-2. Install Docker on Windows
+2. Install Docker on Windows, make sure Docker is running and ready
 3. Run start.bat to make folders and launch Docker Composer
 4. Place files in folder \documents (created by start.bat), which you want to index
 5. Sist2 from Docker will index files in \documents and send to elasticsearch
 6. Sist2 will run web interface at http:\\0.0.0.0:8080 serving UI and your files
 7. If someting fails (indexing or sending the index) just restart the indivdual container in Docker to repeat a step
-8. In UI go settings -> Highlight context size in characters - to increase lenght of text preview
+8. or just run start.bat again until it works :)
+
+Tip: In UI go settings -> Highlight context size in characters - to increase lenght of text preview
 ```
 Know that docker pull for sist2 is ~292.78 MB and elsasticsearch ~1.24 GB.
 
