@@ -13,7 +13,6 @@ if "%~1" neq "" (
 echo Set folder to scan: !SCAN_DIR!
 echo Starting containers. Please wait (this might take a while)...
 :: Output the docker-compose.yml file
-echo Value of SCAN_DIR: !SCAN_DIR!
 (
 echo ^---
 echo version: "2.1" ^# For Windows users
