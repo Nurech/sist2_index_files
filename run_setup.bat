@@ -1,4 +1,5 @@
 @echo off
+setlocal EnableDelayedExpansion
 
 :: Set the default scan directory to the current directory
 set "SCAN_DIR=%cd%"
@@ -7,9 +8,12 @@ set "SCAN_DIR=%cd%"
 if "%~1" neq "" (
     set "SCAN_DIR=%~1"
 )
-echo Set folder to scan: %SCAN_DIR%
+
+)
+echo Set folder to scan: !SCAN_DIR!
 echo Starting containers. Please wait (this might take a while)...
 :: Output the docker-compose.yml file
+echo Value of SCAN_DIR: !SCAN_DIR!
 (
 echo ^---
 echo version: "2.1" ^# For Windows users
@@ -38,7 +42,7 @@ echo     depends_on:
 echo       elasticsearch:
 echo         condition: service_healthy
 echo     volumes:
-echo       - "%SCAN_DIR%/:/tmp/es"
+echo       - !SCAN_DIR!/:/tmp/es
 echo       - .\my_index/:/my_index
 echo     command: "scan --very-verbose --incremental /tmp/es --output /my_index/idx"
 echo.
@@ -53,7 +57,7 @@ echo         condition: service_completed_successfully
 echo       elasticsearch:
 echo         condition: service_healthy
 echo     volumes:
-echo       - "%SCAN_DIR%/:/tmp/es"
+echo       - !SCAN_DIR!/:/tmp/es
 echo       - .\my_index/:/my_index
 echo     command: "index --very-verbose --force-reset --batch-size 1000 --es-url http://elasticsearch:9200 /my_index/idx"
 echo.
@@ -72,7 +76,7 @@ echo         condition: service_healthy
 echo     ports:
 echo       - "8888:8888"
 echo     volumes:
-echo       - "%SCAN_DIR%/:/tmp/es"
+echo       - !SCAN_DIR!/:/tmp/es
 echo       - .\my_index/:/my_index
 echo     command: "web --very-verbose --bind 0.0.0.0:8888 --es-url http://elasticsearch:9200 /my_index/idx"
 echo.
