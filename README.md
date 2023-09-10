@@ -4,23 +4,23 @@ sist2: https://github.com/simon987/sist2
 
 demo of sist2: [https://sist2.simon987.net/](https://sist2.simon987.net/)
 
-additional conf of sist2: https://github.com/simon987/sist2/blob/master/docs/USAGE.md
+Additional conf of sist2: https://github.com/simon987/sist2/blob/master/docs/USAGE.md
 
+The following script automates running sist2 on Windows 10 to index your local files and make them searchable for web UI content.
 ```
-1. Clone start.bat and docker-compose.yml to any folder e.g. ~\sist2
-2. Install Docker on Windows, make sure Docker is running and ready
-3. Run start.bat to make folders and launch Docker Composer
-4. Place files in folder sist2\documents, which you want to index
-5. Sist2 from Docker will index files, store intex at sist2\my_index, sends idx to elasticsearch
-6. Sist2 will run web interface at http:\\localhost:8888 serving UI and your files
-7. If someting fails (indexing or sending the index) just restart the indivdual container in Docker to repeat a step
-8. or just run start.bat again until it works :)
+1. Download and install Docker 4.22.1
+2. Save run_setup.bat to desktop
+3. Edit run_setup.bat "SCAN_DIR" to specify what directory needs to be scanned & indexed
+4. Run run_setup.bat
+    ├ creates file 'docker-compose.yml' at run location
+    ├ creates folder 'my_index' at run location to store index data
+    └ runs docker-compose.yml to start containers
 
 Tip: In UI go settings -> Highlight context size in characters - to increase lenght of text preview
 ```
-Know that docker pull for sist2 is ~292.78 MB and elsasticsearch ~1.24 GB.
-
-The ceated index for ~40 files is ~7 MB.
+Know that docker pull for sist2 is ~292.78 MB
+Elsasticsearch is ~1.24 GB.
+The created index for ~40 files is ~7 MB.
 
 ![image](https://user-images.githubusercontent.com/20840114/204141649-3fc81e35-2a35-4da1-a1d2-f8351dbfe7b9.png)
 ![image](https://user-images.githubusercontent.com/20840114/204141409-63c04954-aa90-4dda-b55b-27ccd03d0999.png)
