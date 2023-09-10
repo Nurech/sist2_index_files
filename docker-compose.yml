@@ -12,18 +12,20 @@ services:
     ports:
       - 9200:9200
     healthcheck:
-      test: curl -u elastic:elastic -s -f elasticsearch:9200/_cat/health >>/dev/null ^^
-      interval: 5s
-      timeout: 60s
-      retries: 60
+      test: ["CMD", "curl", "-f", "http://localhost:9200/_cat/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   # 2 Scan the files and make a index
   sist2_scan:
     image: simon987/sist2
-    container_name: sist2_scan
     restart: "no"
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
     volumes:
-      - C:\Users\user\Desktop/:/tmp/es
+      - C:\Users\user\Desktop\thesis papers/:/tmp/es
       - .\my_index/:/my_index
     command: "scan --very-verbose --incremental /tmp/es --output /my_index/idx"
 
@@ -38,7 +40,7 @@ services:
       elasticsearch:
         condition: service_healthy
     volumes:
-      - C:\Users\user\Desktop/:/tmp/es
+      - C:\Users\user\Desktop\thesis papers/:/tmp/es
       - .\my_index/:/my_index
     command: "index --very-verbose --force-reset --batch-size 1000 --es-url http://elasticsearch:9200 /my_index/idx"
 
@@ -57,7 +59,7 @@ services:
     ports:
       - "8888:8888"
     volumes:
-      - C:\Users\user\Desktop/:/tmp/es
+      - C:\Users\user\Desktop\thesis papers/:/tmp/es
       - .\my_index/:/my_index
     command: "web --very-verbose --bind 0.0.0.0:8888 --es-url http://elasticsearch:9200 /my_index/idx"
 
