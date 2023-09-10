@@ -11,14 +11,16 @@ The script [run_setup.bat](https://github.com/Nurech/sist2_index_files/blob/main
 1. Download and install Docker 4.22.1
 2. Save run_setup.bat to desktop
 3. Edit run_setup.bat "SCAN_DIR" to specify what directory needs to be scanned & indexed
-    └ default dir is %cd% (the location where run_setup.bat currently is)
+    ├ default dir is %cd% (the location where run_setup.bat currently is)
+    └ e.g.: drop the bat file to whatever current directory you want to be scanned.
 4. Run run_setup.bat
     ├ creates file 'docker-compose.yml' at run location
     ├ creates folder 'my_index' at run location to store index data
     └ runs docker-compose.yml to start containers
 
 Tip: If something does not work, run the containers manually one by one.
-    ├ wait for the first container to exit before starting another one. Order is: Scan -> Index -> Web 
+    ├ make sure elastic is running and ready to accept incoming messages
+    ├ for sist2 containers run order is: Scan (wait for exit) -> Index (wait for exit) -> Web
     └ or just close all docker containers and re-run run_setup.bat
 
 Tip: In UI go to settings -> Highlight context size in characters - to increase the length of text preview
