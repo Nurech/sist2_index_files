@@ -25,16 +25,18 @@ echo       - "ES_JAVA_OPTS=-Xms1G -Xmx2G"
 echo     ports:
 echo       - 9200:9200
 echo     healthcheck:
-echo       test: curl -u elastic:elastic -s -f elasticsearch:9200/_cat/health ^>^>/dev/null ^^^^|| exit 1
-echo       interval: 5s
-echo       timeout: 60s
-echo       retries: 60
+echo       test: ["CMD", "curl", "-f", "http://localhost:9200/_cat/health"]
+echo       interval: 10s
+echo       timeout: 5s
+echo       retries: 5
 echo.
 echo   ^# 2 Scan the files and make a index
 echo   sist2_scan:
 echo     image: simon987/sist2
-echo     container_name: sist2_scan
 echo     restart: "no"
+echo     depends_on:
+echo       elasticsearch:
+echo         condition: service_healthy
 echo     volumes:
 echo       - %SCAN_DIR%/:/tmp/es
 echo       - .\my_index/:/my_index
