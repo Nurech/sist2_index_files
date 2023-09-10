@@ -7,7 +7,8 @@ set "SCAN_DIR=%cd%"
 if "%~1" neq "" (
     set "SCAN_DIR=%~1"
 )
-
+echo Set folder to scan: %SCAN_DIR%
+echo Starting containers. Please wait (this might take a while)...
 :: Output the docker-compose.yml file
 (
 echo ^---
