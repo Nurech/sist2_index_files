@@ -7,6 +7,7 @@ demo of sist2: [https://sist2.simon987.net/](https://sist2.simon987.net/)
 Additional conf of sist2: https://github.com/simon987/sist2/blob/master/docs/USAGE.md
 
 The script [run_setup.bat](https://github.com/Nurech/sist2_index_files/blob/main/run_setup.bat) automates running sist2 on Windows 10 to index your local files and make content searchable in web UI.
+Alternatively, edit and run docker-compose.yml locally.
 ```
 1. Download and install Docker 4.22.1
 2. Save run_setup.bat to desktop
