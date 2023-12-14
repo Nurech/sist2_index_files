@@ -6,14 +6,21 @@ demo of sist2: [https://sist2.simon987.net/](https://sist2.simon987.net/)
 
 Additional conf of sist2: https://github.com/simon987/sist2/blob/master/docs/USAGE.md
 
-The script [run_setup.bat](https://github.com/Nurech/sist2_index_files/blob/main/run_setup.bat) automates running sist2 on Windows 10 to index your local files and make content searchable in web UI.
+The script [run_setup.bat](https://github.com/Nurech/sist2_index_files/blob/main/run_setup.bat) automates running sist2 on Windows 10/11 to index your local files and make content searchable in web UI.
+
+1. Ensure docker is running.
+2. Then, running bat file will write docker-compose.yml at current dir.
+3. Then bat file will run docker-compose.yml with docker.
+4. Then docker will pull and run 4 images.
+5. The 4 images will index all files at current run dir and open web UI where you can see the files.
+
 Alternatively, edit and run docker-compose.yml locally.
 ```
 1. Download and install Docker 4.22.1
 2. Save run_setup.bat to desktop
 3. Edit run_setup.bat "SCAN_DIR" to specify what directory needs to be scanned & indexed
     ├ default dir is %cd% (the location where run_setup.bat currently is)
-    └ e.g.: drop the bat file to whatever current directory you want to be scanned.
+    └ e.g.: drop the bat file to whatever current directory you want to be scanned and run it.
 4. Run run_setup.bat
     ├ creates file 'docker-compose.yml' at run location
     ├ creates folder 'my_index' at run location to store index data
