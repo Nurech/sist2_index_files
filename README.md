@@ -31,7 +31,8 @@ Tip: If something does not work, run the containers manually one by one.
     ├ for sist2 containers run order is: Scan (wait for exit) -> Index (wait for exit) -> Web
     └ or just close all docker containers and re-run run_setup.bat
 
-Tip: In UI go to settings -> Highlight context size in characters - to increase the length of text preview
+Tip: In UI go to settings -> Highlight context size in characters
+to increase the length of text preview
 
 Know that docker pull for sist2 is ~292.78MiB
 Elsasticsearch is ~1.24GiG.
