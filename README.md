@@ -1,5 +1,11 @@
 # sist2_index_files
 
+This web UI based localhost program makes your pdf, image, powerpoint (etc.) files content searchable by plain text.
+Execute single *.bat file to orchestrate the launching of docker containers which do all the magic.
+From whereever the batfile is launched all folders and files are recursivley scanned down.
+My advice is to make a folder (e.g.: ~/myFolder) with contents you want to scan.
+Launch the bat file in ~/myFolder. 
+
 sist2: https://github.com/simon987/sist2
 
 demo of sist2: [https://sist2.simon987.net/](https://sist2.simon987.net/)
